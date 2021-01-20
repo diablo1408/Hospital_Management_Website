@@ -1,0 +1,230 @@
+.navbar{
+    margin-top: 0px;
+    padding: 15px;
+}
+
+.nav-item{
+    padding-right: 7px;
+}
+
+.img_jumbo{
+    background-size: 100%, 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.departments{
+    background-image: url('../images/dept2.png'); 
+    background-size: 100%, 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.appointmentDetails{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: beige;
+}
+
+.bookAppointment{
+    background-image: url('../images/bookAppointment.jpg'); 
+    background-size: 100%, 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.no_margin{
+    margin-bottom: 0px;
+}
+
+.icon_class{
+    color: black;
+    font-size: 30px;
+    padding: 15px;
+}
+
+.text_black{
+    color: black;
+}
+
+footer{
+    text-align: center;
+    padding: 30px;
+    background-color: rgb(108, 184, 167);
+    color: #101820FF;
+    margin-top: 70px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+div.center a{
+    padding: 20px;
+}
+
+.jumbotron{
+    border-radius: 0px;
+}
+
+.transparent{
+    background-color: transparent;
+    /* overflow: hidden; */
+}
+
+.wide{
+    padding: 10%;
+    margin-bottom: 0%;
+}
+
+.center{
+    text-align: center;
+    margin: auto;
+}
+
+.animation{
+    position: relative;
+    animation: mymove 5s;
+}
+
+@keyframes mymove {
+    from {left: 200px;}
+    to{left: 0px;}
+}
+
+footer {
+    display: flex;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gap{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.col {
+    width: fit-content;
+    min-height: 100px;
+    margin: 10px;
+}
+
+.list-heading {
+    padding-left: 20px;
+    font-weight: bold;
+}
+
+.footer-list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.column {
+    float: left;
+    width: 30%;
+    padding: 0px 10px;
+    margin: 0 1%;
+}
+  
+.row {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 5%;
+    margin-right: 2%;
+}
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .card p{
+        text-align:center ;
+    }
+} 
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+} 
+
+.card:hover{
+    transform: scale(1.05);
+}
+
+.card p{
+    margin:0px;
+}  
+
+.deptButton{
+    border:none; 
+}
+.deptButton:focus{
+    outline: none;
+}
+
+@media screen and (max-width: 1285px){
+    .changingContent{
+        width: 50%;
+    }
+}
+
+
+.blockButton{
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#mapLink:hover{
+    background-color: rgb(194, 133, 169);
+}
+
+.formClass{
+    width: 70%;
+    margin: 60px auto;
+    background: #e2e2e2;
+    padding: 60px 120px 80px 120px;
+    -webkit-box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    box-shadow: 5px 5px 5px grey
+}
+
+#dropdownScroll{
+    overflow :auto; 
+    height: 300px
+}
+
+.disabled{
+    cursor: not-allowed;
+}
+
+.mapLinkHospitals :hover{
+    background-color:rgb(245, 187, 177);
+}

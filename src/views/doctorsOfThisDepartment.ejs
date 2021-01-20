@@ -1,0 +1,63 @@
+<%- include('partials/header') %> 
+
+    <div class="jumbotron center img_jumbo changingDiv" style="background-image: url('../../images/doctorAppointmentPage.jpg');">
+        <h3 class="center lead" style="font-size: 50px;"><%= hospName %> </h3><br>
+        <h3 class="center"> (<%= deptName %>)  </h3>
+    </div>
+    <br>
+    <div class="center container">
+        <h3>Doctors</h3><hr>
+    </div>
+
+    <div class="container">
+
+        <% let sortedArr = doctors %>
+        <% sortedArr.sort((a, b) => (a.rating < b.rating) ? 1 : ((a.rating === b.rating) ? ((a.firstName > b.firstName) ? 1 : -1) : -1)) %>
+        <% for(let i=0;i<sortedArr.length;i++) { %>
+
+            <div class="card" style="transform: none;">
+
+                <div><span>Name: <%= sortedArr[i].firstName%> </span><span><%= sortedArr[i].lastName%> </span></div>
+                <div>Rating: ⭐<%= sortedArr[i].rating%></div>
+                <div>Available on : 
+                    <% let daysArr = sortedArr[i].daysAvailable %>
+                    <% daysArr.sort() %>
+                    <% for(let m=0;m<daysArr.length;m++) { %>
+                        
+                        <% if(daysArr[m] == 0) {%>
+                            <span style="background-color: bisque;">Sunday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 1) {%>
+                            <span style="background-color: rgb(158, 211, 114);">Monday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 2) {%>
+                            <span style="background-color: rgb(236, 161, 127);">Tuesday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 3) {%>
+                            <span style="background-color: rgb(106, 232, 236);">Wednesday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 4) {%>
+                            <span style="background-color: rgb(231, 164, 228);">Thursday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 5) {%>
+                            <span style="background-color: rgb(196, 160, 224);">Friday</span>&nbsp;
+                        <% } %>
+                        <% if(daysArr[m] == 6) {%>
+                            <span style="background-color: rgb(215, 235, 36);">Saturday</span>&nbsp;
+                        <% } %>
+                        
+                    <% } %>
+                </div><br>
+                <input
+                    type = "button"
+                    value = "Book Appointment"
+                    class="btn btn-success deptButton"
+                    onclick = "location.href='/doctorsAppointment/<%= doctors[i].dId %>'"
+                >
+
+            </div><br>
+
+        <% } %>
+    </div>
+
+<%- include('partials/footer') %> 

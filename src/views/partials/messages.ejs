@@ -1,0 +1,42 @@
+<%# the first if is for parsing the errors array coming from the signUp page server %>
+<% if(typeof errors != 'undefined'){ %> 
+    <% errors.forEach((error) => { %>
+        <div class="alert alert-warning alert-dismissible  show" role="alert">
+        <%= error.msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    <% }); %>
+<% } %> 
+
+
+<%# this second if is for the message present in the success_msg global variable %>
+<% if(success_msg != ''){ %>
+    <div class="alert alert-success alert-dismissible  show" role="alert">
+      <%= success_msg %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<% } %> 
+    
+<%# this  if is for the message present in the error_msg global variable %>
+<% if(error_msg != ''){ %>
+    <div class="alert alert-danger alert-dismissible  show" role="alert">
+      <%= error_msg %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<% } %> 
+
+<%# this if is for the error that happens in general %>
+<% if(error != ''){ %>
+    <div class="alert alert-danger alert-dismissible  show" role="alert">
+      <%= error %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+<% } %>

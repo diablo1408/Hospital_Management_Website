@@ -1,0 +1,107 @@
+<%- include('partials/header') %> 
+
+    <div class="jumbotron img_jumbo wide" style=" background-image: url('../<%= hospital.imageURL %>'); height: 50%;">        
+    </div>
+
+    <div class=" jumbotron bg-dark text-white center"  >
+        <h1 class="display-4"> <%= hospital.hName %> </h1>
+    </div>
+
+    <div class="jumbotron center bookAppointment" >
+        <h1 class="lead" style="font-size: 50px;">Book an Appointment</h1>
+    </div>
+
+    <% const l  = Math.ceil(datesArr.length/3) %>
+    <% let k = 0 %>
+    <% for(let i =0;i < l ;i++){ %>
+        <div class="row">
+            <% for(let j = k;j < (k+3) ;j++){ %>
+                <% if(j < datesArr.length) {%>
+                    <div class="column">
+                        <div class="card " style="transition: 0.5s;">                            
+                            <div class="card-body">
+                                <p class="card-title"> Date: <%= datesArr[j] %> </p>
+                                <p class="card-title" > Availability: <span class="countClass" id="count-<%= j %>"><%= availabilityCountArr[j] %></span> </p>                                
+                            </div>
+                            <input type="button"                                 
+                                value="Book OPD Appointment"
+                                onclick="postData('<%= datesArr[j] %>', '<%= j %>')"
+                                id="btn-<%= j %>"
+                                class="classBtn btn btn-success"
+                            ><br>
+                            <input type="button"                                 
+                                value="Book Doctor's Appointment"
+                                onclick="location.href='/specificHospital/departments/<%= hospital.hId %>'"
+                                class="classBtn btn btn-success"
+                            >                           
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+            <% k=k+3 %>   
+        </div>
+    <% } %>
+    
+    <div class="jumbotron img_jumbo" 
+        style="background-image: url('../images/hospitalVisit.jpg'); 
+        margin-top: 50px;
+        margin-bottom: 0px;
+        "                
+    >
+        <div class="container">
+            <div class="card" style="transform: none; background-color: #FAD0C9FF; color: #6E6E6DFF;">
+                <p class="center" style="font-size: 18px;">Navigate to the official website of <%=hospital.hName%></p>
+                <a href="<%= hospital.hospLink %>" target="_blank">
+                    <button type="button" class="btn btn-secondary deptButton container">
+                        Click Here
+                    </button>
+                </a>
+            </div><hr>
+            <div class="card" style="transform: none; background-color: #6E6E6DFF; color: white;">
+                <p class="center" style="font-size: 18px;">Visit Google maps for <%=hospital.hName%></p>
+                <a href="<%= hospital.link %>" target="_blank" class="mapLinkHospitals" style="background-color:#FAD0C9FF;">
+                    <button type="button" class="btn deptButton container" >
+                        Click Here
+                    </button>
+                </a>  
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const classBtn = document.getElementsByClassName('classBtn');
+        const countClass = document.getElementsByClassName('countClass');
+        for(let i=0;i<countClass.length;i++){
+           if(countClass[i].innerText == 0){
+                classBtn[i].disabled = true;
+           }
+        }
+        const postData = (date, index) => {
+            const data = {
+                date
+            };
+            fetch('/specificHospital/<%= hospital.hId %>', {
+                method : 'POST' ,
+                headers : {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            }).then((response) => {
+                return response.json();
+            }).then((result) => {
+                if(result){
+                    const count = document.getElementById(`count-${index}`);
+                    const btn = document.getElementById(`btn-${index}`);
+                    count.innerText=parseInt(parseInt(count.innerText)-1);
+                    if(count.innerText==0){
+                        btn.disabled = true;
+                    }
+                    location.href='/generalAppointment' 
+                }
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+    </script>
+
+<%- include('partials/footer') %> 

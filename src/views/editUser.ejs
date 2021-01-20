@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add tests</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body        { padding-top:80px; }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><span class="fa fa-sign-in"></span> Edit User</h1>        
+            <br>
+            <form action="/editUser/<%= user._id %>", method="post">
+                
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <label>Email Id</label>
+                    <input type="text" class="form-control" name="email" value="<%= user.email %>" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" minlength="8" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password"  class="form-control" id="confirm_password" name="confirmPass">
+                    <span id="message"></span>
+                </div>
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" class="form-control" name="age">
+                </div> 
+                <div class="form-group">
+                    <label>Contact Number</label>
+                    <input type="text" pattern="(7|8|9)\d{9}" class="form-control" name="contactNo">
+                </div>
+                <button type="submit" class="btn btn-warning btn-lg" name="deptButton">Add</button>
+
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('confirm_password').addEventListener('keyup', () => {
+            const pass = document.getElementById('password');
+            const cPass = document.getElementById('confirm_password');
+            const message = document.getElementById('message');
+
+            if(pass.value == cPass.value){
+                message.style.color = 'green';
+                message.innerText = "matched";
+            }else{
+                message.style.color = 'red';
+                message.innerText = "not matched";
+            }
+        })
+        document.getElementById('password').addEventListener('keyup', () => {
+            const pass = document.getElementById('password');
+            const cPass = document.getElementById('confirm_password');
+            const message = document.getElementById('message');
+
+            if(pass.value == cPass.value){
+                message.style.color = 'green';
+                message.innerText = "matched";
+            }else{
+                message.style.color = 'red';
+                message.innerText = "not matched";
+            }
+        })
+    </script>
+
+</body>
+</html>

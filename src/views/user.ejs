@@ -1,0 +1,161 @@
+<%- include('partials/header') %> 
+
+<div class="jumbotron center changingDiv" style="background-color: rgb(83, 141, 143);">
+    <h3 class="display-4" style="color: white;">My Profile</h3>
+</div>
+
+<div class="container" style="margin-top: 30px; margin-bottom: 30px;">
+    <table class="table center table-bordered">
+        <tr>
+            <th scope="row">Email id</th>
+            <td><%= user.email %></td>
+        </tr>
+        <tr>
+            <th scope="row">Your Name</th>
+            <td><%= user.name%></td>
+        </tr>
+        <tr>
+            <th scope="row">Age</th>
+            <td><%= user.age%></td>
+        </tr>
+        <tr>
+            <th scope="row">Contact number</th>
+            <td><%= user.contactNo %></td>
+        </tr>
+    </table>
+</div>
+
+<%{%>
+    <div class="jumbotron center bookAppointment" style="background-image: url('../images/bookAppointment.jpg'); margin-bottom: 30px;">
+        <h3 class="display-4">Doctor's Appointments</h3>
+    </div>
+<% const l  = Math.ceil(docApp.length/3) %>
+<% let k = 0 %>
+<% for(let i =0;i < l ;i++){ %>
+    <div class="row">
+        <% for(let j = k;j < (k+3) ;j++){ %>
+            <% if(j < docApp.length) {%>
+                <div class="column">
+                    <div class="card " style="transition: 0.5s;">                            
+                        <div class="card-body">
+                            <p class="card-title"> Date: <b> <%= docApp[j].docAppDate %> </b></p>
+                            <p class="card-title"> Doctor's name: Dr. <%= docApp[j].doctor.firstName %> <%= docApp[j].doctor.lastName %> </p>
+                            <p class="card-title"> Hospital: <%= docApp[j].docHospName %></p>
+                            <p class="card-title"> Department: <%= docApp[j].docDeptName %></p> 
+                        </div>
+                        <input 
+                            value="Cancel Button"
+                            onclick="cancelFuncDoc(this,
+                                    '<%= docApp[j].docAppDate %>',
+                                    '<%= docApp[j].docId %>'
+                            )"
+                            type="button"
+                            class="btn btn-success cancel" 
+                            style="margin-bottom: 15px;"
+                            style="margin-bottom: 15px"
+                            class="deptButton"
+                        >
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+        <% k=k+3 %>   
+    </div>
+<% } %>
+<br><br>
+<%}%>
+
+<%{%>
+    <div class="jumbotron center bookAppointment" style="background-image: url('../images/bookAppointment.jpg'); margin-bottom: 30px;">
+        <h3 class="display-4">OPD Appointments</h3>
+    </div>
+<% const l  = Math.ceil(generalApp.length/3) %>
+<% let k = 0 %>
+<% for(let i =0;i < l ;i++){ %>
+    <div class="row">
+        <% for(let j = k;j < (k+3) ;j++){ %>
+            <% if(j < generalApp.length) {%>
+                <div class="column">
+                    <div class="card " style="transition: 0.5s;">                            
+                        <div class="card-body">
+                            <p class="card-title"> Date: <b> <%= generalApp[j].hospAppDate %> </b></p>                            
+                            <p class="card-title"> Hospital: <%= generalApp[j].hospAppName %></p>
+                        </div>
+                        <input 
+                            value="Cancel Button"
+                            onclick="cancelFuncHosp(this,
+                                    '<%= generalApp[j].hospAppDate %>',
+                                    '<%= generalApp[j].hospId %>'
+                            )"
+                            type="button"
+                            class="btn btn-success cancel" 
+                            style="margin-bottom: 15px;"
+                            style="margin-bottom: 15px"
+                            class="deptButton"
+                        >
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+        <% k=k+3 %>   
+    </div>
+<% } %>
+<br><br>
+<%}%>
+
+<br><br>
+
+<script>
+
+    const cancelFuncHosp = (e, date , hospId) => {
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
+        postDataHosp(date, hospId);
+    }
+    const postDataHosp = (date, hospId) => {
+        console.log("inside fetch");
+        const data = {
+            date, 
+            hospId
+        }
+        fetch('/cancelHospAppointment', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json;charset=utf-8'
+            }, 
+            body: JSON.stringify(data)
+        }).then((res) => {
+            console.log("hosp app cancelled");
+        }).catch((err) => {
+            console.log("error in cancelling hosp app  "+err);
+        })
+    }
+
+    const cancelFuncDoc = (e, date , docId) => {
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
+        postDataDoc(date, docId);
+    }
+    const postDataDoc = (date, docId) => {
+        console.log("inside fetch");
+        const data = {
+            date, 
+            docId
+        }
+        fetch('/cancelDocAppointment', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json;charset=utf-8'
+            }, 
+            body: JSON.stringify(data)
+        }).then((res) => {
+            console.log("doc app cancelled");
+        }).catch((err) => {
+            console.log("error in cancelling doc app  "+err);
+        })
+    }
+
+
+
+
+</script>
+
+<%- include('partials/footer') %> 

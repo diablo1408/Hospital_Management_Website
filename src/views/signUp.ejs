@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add tests</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <style>
+        body        { padding-top:40px; }
+    </style>    
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+       
+<div class="container">    
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1><span class="fa fa-sign-in"></span> Add User</h1>        
+        <br>
+        <div id="message" ></div>
+        
+        <%- include ('partials/messages') %>
+        
+        <form action="/signUp", method="POST">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="name" 
+                    placeholder="Enter Name"
+                    value="<%= typeof name != 'undefined' ? name : ''%>"
+                >
+            </div>
+            <div class="form-group">
+                <label for="email">Email Id</label>
+                <input type="text" 
+                    class="form-control" 
+                    name="email" 
+                    placeholder="Enter email"
+                    value="<%= typeof email != 'undefined' ? email : ''%>"
+                >
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    value="<%= typeof password != 'undefined' ? password : ''%>"
+                >
+            </div>
+            <div class="form-group">
+                <label for="confirmPass">Confirm Password</label>
+                <input 
+                    type="password"  
+                    class="form-control" 
+                    id="confirm_password" 
+                    name="confirmPass" 
+                    placeholder="Enter confirm_password"
+                    value="<%= typeof confirmPass != 'undefined' ? confirmPass : ''%>"
+                >
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input 
+                    type="number" 
+                    class="form-control" 
+                    name="age"
+                    placeholder="Enter age"
+                    value="<%= typeof age != 'undefined' ? age: ''%>"
+                >
+            </div> 
+            <div class="form-group">
+                <label for="contactNo">Contact Number</label>
+                <input 
+                    type="text" 
+                    pattern="(7|8|9)\d{9}" 
+                    class="form-control" 
+                    name="contactNo"
+                    placeholder="Enter contact number"
+                    value="<%= typeof contactNo != 'undefined' ? contactNo : ''%>"
+                >
+            </div>
+            <br>
+            <button type="submit" class="btn btn-warning btn-lg" name="deptButton">Add</button>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    const pass = document.getElementById('password');
+    const cPass = document.getElementById('confirm_password');
+    const message = document.getElementById('message');
+
+    document.getElementById('confirm_password').addEventListener('keyup', () => {
+        if(pass.value == cPass.value){
+            message.style.color = 'green';
+            message.classList.add('alert', 'alert-warning');
+            message.innerText = "matched";
+        }else{
+            message.style.color = 'red';
+            message.classList.add('alert', 'alert-warning');
+            message.innerText = "not matched";
+        }
+    })
+    document.getElementById('password').addEventListener('keyup', () => {
+        if(pass.value == cPass.value){
+            message.style.color = 'green';
+            message.classList.add('alert', 'alert-warning');
+            message.innerText = "matched";
+
+        }else{
+            message.style.color = 'red';
+            message.classList.add('alert', 'alert-warning');
+            message.innerText = "not matched";
+        }
+    })    
+</script>
+
+</body>
+</html>

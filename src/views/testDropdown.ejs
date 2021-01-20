@@ -1,0 +1,17 @@
+
+<li class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdown_target">Tests
+       <span class="caret"></span> 
+    </a>
+
+    <div class="dropdown-menu" id="dropdownScroll" aria-labelledby="dropdown_target">
+        <% for(let i=0;i < departments.length; i++){ %>
+            <% for(let j=0;j < departments[i].treatments.length; j++){ %>
+                    <a href="/deptWiseHosp/<%= departments[i].deptId %>" class="dropdown-item">
+                        <%= departments[i].treatments[j].treatmentName %>
+                    </a>
+            <% } %>
+        <% } %>
+    </div>
+</li>
+

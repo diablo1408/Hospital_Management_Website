@@ -1,0 +1,24 @@
+<!--include department icons or tabs on the home page-->
+<!--included in index.ejs-->
+    
+<% const l  = Math.ceil(departments.length/3) %>
+<% let k = 0 %>
+<% for(let i =0;i < l ;i++){ %>
+    <div class="row">
+        <% for(let j = k;j < (k+3) ;j++){ %>
+            <% if(j < departments.length) {%>
+                <div class="column">
+                    <div class="card ">
+                        <p>
+                            <button onclick="location.href='/deptWiseHosp/<%= departments[j].deptId %>'" 
+                            type="button" class="deptButton">
+                                <%= departments[j].deptName %>
+                            </button>
+                        </p>                        
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+        <% k=k+3 %>   
+    </div>
+<% } %>
